@@ -1,0 +1,5 @@
+#Xft.dpi:180
+#Dpi seetings for my 4k Screen
+rofi.dpi: 192
+Xft.dpi: 120
+Xft.antialias: true
