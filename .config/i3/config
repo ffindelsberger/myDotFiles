@@ -199,14 +199,14 @@ default_border pixel 1
 default_floating_border pixel 1
 smart_borders on
 # don´t show gaps if only one windows is on screen
-#smart_gaps on
+smart_gaps on
 
 # Only supported in Version of i3 4.22 and above
 gaps inner 7
-gaps top -7
-gaps left -4
-gaps right -4
-gaps bottom -3
+gaps top 0
+gaps left 0
+gaps right 0
+gaps bottom 0
 #gaps outer 0
 
 # Make first Workspace my social workspace with larger border for chat apps
@@ -262,6 +262,7 @@ for_window [class="Nautilus"] floating enable
 for_window [class="Eog"] floating enable
 
 #Assign  
+assign [class = "Ferdium"] $ws4
 
 ###########
 ###Modes###
