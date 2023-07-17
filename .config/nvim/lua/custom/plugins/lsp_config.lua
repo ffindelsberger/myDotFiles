@@ -78,6 +78,7 @@ return {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
+        astro = {},
         rust_analyzer = {},
         tsserver = {},
         lua_ls = {

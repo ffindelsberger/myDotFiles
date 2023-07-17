@@ -35,6 +35,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  --Markdown viewer Plugin
+  'iamcco/markdown-preview.nvim',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   -- file managing , picker etc
