@@ -1,6 +1,5 @@
 return {
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  -- TODO: cleanup this file, autoformat should be in extra plugin folder
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
