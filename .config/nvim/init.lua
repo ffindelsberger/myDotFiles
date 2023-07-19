@@ -35,9 +35,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  --Markdown viewer Plugin
-  'iamcco/markdown-preview.nvim',
-
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   -- file managing , picker etc
@@ -91,6 +88,7 @@ require('lazy').setup({
 -- Fix : indent_blankline resets the colors when the theme is set so we
 -- introduce this autocommand to correct them each time the colors are set
 -- see https://github.com/lukas-reineke/indent-blankline.nvim/issues/553
+-- 18.07.2023 : i dont actually know if i need this anymore, i might have fixed that but dont know how anymore. Should test this but am to lazy right know
 vim.api.nvim_create_autocmd("ColorScheme", {
   desc = "Refresh indent colors",
   callback = function()
@@ -103,6 +101,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
+-- Get that semantic token shit outa here
 -- Hide all semantic highlights
 -- disables semantic tokens for all lsp`s
 -- see https://github.com/simrat39/rust-tools.nvim/issues/365
