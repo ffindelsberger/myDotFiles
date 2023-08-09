@@ -221,7 +221,7 @@ workspace 1 gaps inner 40
 bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 
 #Wallpapers
-exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
+exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/Pictures/smile.jpg.1'
 
 
 ###########
@@ -254,6 +254,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ##################
 #Floating Windows And Workspace Assignments#
 ##################
+
+# Workspace 7 is floatin enabled for everything
+for_window [workspace="7"] floating enable 
 
 #Floating pup up automatically 
 for_window [window_role="pop-up"] floating enable
