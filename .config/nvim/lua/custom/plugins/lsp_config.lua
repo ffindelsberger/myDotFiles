@@ -77,9 +77,9 @@ return {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        astro = {},
+        --astro = {},
         rust_analyzer = {},
-        tsserver = {},
+        --tsserver = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },

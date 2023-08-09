@@ -89,25 +89,35 @@ require('lazy').setup({
 -- introduce this autocommand to correct them each time the colors are set
 -- see https://github.com/lukas-reineke/indent-blankline.nvim/issues/553
 -- 18.07.2023 : i dont actually know if i need this anymore, i might have fixed that but dont know how anymore. Should test this but am to lazy right know
-vim.api.nvim_create_autocmd("ColorScheme", {
-  desc = "Refresh indent colors",
-  callback = function()
-    vim.cmd [[hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
-    vim.cmd [[hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
-    vim.cmd [[hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-    vim.cmd [[hi IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
-    vim.cmd [[hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-    vim.cmd [[hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
-  end,
-})
+-- 07.08.2023 : i deactivated it and did not notice any issues so far
+--vim.api.nvim_create_autocmd("ColorScheme", {
+--  desc = "Refresh indent colors",
+--  callback = function()
+--    vim.cmd [[hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+--    vim.cmd [[hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+--    vim.cmd [[hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+--    vim.cmd [[hi IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+--    vim.cmd [[hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+--    vim.cmd [[hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+--  end,
+--})
 
 -- Get that semantic token shit outa here
 -- Hide all semantic highlights
 -- disables semantic tokens for all lsp`s
 -- see https://github.com/simrat39/rust-tools.nvim/issues/365
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-  vim.api.nvim_set_hl(0, group, {})
-end
+--for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+--  vim.api.nvim_set_hl(0, group, {})
+--end
+--07.08.2023 : When changing colorschme using the colorschme command the highlight groups would reset.
+--              with this autocommand we make sure that the highlight groups get cleared every time the Theme is changed
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+  end,
+})
 
 -- [[ Basic Keymaps ]]
 

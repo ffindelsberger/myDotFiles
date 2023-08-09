@@ -24,6 +24,8 @@ Make sure the following Fonts are installed:
 
 - ripgrep : used in nevom telescope plugin
 - maim : used as a screnshot tool for when u press 'Print'
+- feh : for setting background images in i3
+- polybar : bar for i3
 
 
 

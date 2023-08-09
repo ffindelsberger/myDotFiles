@@ -119,7 +119,7 @@ set $ws2 "2: IDE"
 set $ws3 "3: Web"
 set $ws4 "4: Ferdium"
 set $ws5 "5: Custom "
-set $ws6 "6"
+set $ws6 "6: Discord"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -221,7 +221,7 @@ workspace 1 gaps inner 40
 bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 
 #Wallpapers
-exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/Pictures/smile.jpg.1'
+exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
 
 
 ###########
