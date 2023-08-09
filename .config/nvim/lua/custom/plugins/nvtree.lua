@@ -87,7 +87,7 @@ return {
     config = function(_, opts)
       require("nvim-tree").setup(opts)
       vim.g.nvimtree_side = opts.view.side
-      vim.keymap.set('n', '<leader>t', '<cmd> NvimTreeToggle <CR>', { desc = 'Toggle nvimtree' })
+      vim.keymap.set('n', '<leader>nt', '<cmd> NvimTreeToggle <CR>', { desc = 'Toggle nvimtree' })
     end,
   },
 }
