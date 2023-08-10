@@ -221,7 +221,7 @@ workspace 1 gaps inner 40
 bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 
 #Wallpapers
-exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/Pictures/smile.jpg.1'
+exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
 
 
 ###########
