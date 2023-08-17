@@ -52,7 +52,9 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 # use rofi instead of dmenu
-bindsym $mod+d exec --no-startup-id rofi -show drun
+# The complete Theming of rofi is provided by https://github.com/adi1090x/rofi
+# because its customized it is provided with this dotFilesRepo
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme $HOME/.config/rofi/launchers/type-1/style-6.rasi
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -118,7 +120,7 @@ set $ws1 "1: Terms"
 set $ws2 "2: IDE"
 set $ws3 "3: Web"
 set $ws4 "4: Ferdium"
-set $ws5 "5: Custom "
+set $ws5 "5: Custom"
 set $ws6 "6: Discord"
 set $ws7 "7"
 set $ws8 "8"
@@ -221,8 +223,10 @@ workspace 1 gaps inner 40
 bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 
 #Wallpapers
-exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
-
+# Switch to the single image line if you dont have a wallpapers folder
+#exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/data/git/wallpapers'
+#exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
+exec_always --no-startup-id curl localhost:3000/file | feh --randomize --no-fehbg --bg-fill 
 
 ###########
 ###Bar#####
@@ -266,6 +270,9 @@ for_window [class="Eog"] floating enable
 
 #Assign  
 assign [class = "Ferdium"] $ws4
+
+# Make all Windows on Workspace 7 floating
+for_window [workspace="7"] floating enable
 
 ###########
 ###Modes###
