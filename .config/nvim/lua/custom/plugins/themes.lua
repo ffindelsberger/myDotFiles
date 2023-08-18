@@ -26,8 +26,9 @@ return {
       --require("gruvbox-material").setup({
       --  foreground = 'original'
       --})
-      vim.cmd("let g:gruvbox_material_foreground = 'mix'")
+      vim.cmd("let g:gruvbox_material_foreground = 'material'")
       vim.cmd("let g:gruvbox_material_transparent_background = '1'")
+      vim.cmd("let g:gruvbox_material_diagnostic_virtual_text = 'colored' ")
       vim.cmd([[colorscheme gruvbox-material]])
     end,
   }
