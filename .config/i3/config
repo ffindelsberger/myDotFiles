@@ -211,7 +211,7 @@ gaps right 0
 gaps bottom 0
 #gaps outer 0
 
-# Make first Workspace my social workspace with larger border for chat apps
+# Put larger Borders on first Workspace
 workspace 1 gaps inner 40
 
 
@@ -267,9 +267,13 @@ for_window [class="Arandr"] floating enable
 for_window [class="Pavucontrol"] floating enable, border normal
 for_window [class="Nautilus"] floating enable
 for_window [class="Eog"] floating enable
-
-#Assign  
+# this line is used to make the gui app window i am working on to be floating. Find out the Window class by running "xprop WM_CLASS" and clicking on the window
+for_window [class="Progress_bar"] floating enable
 assign [class = "Ferdium"] $ws4
+
+#Autostarts / Run program on startup 
+exec --no-startup-id i3-msg 'workspace 4; exec ferdium; workspace 1'
+exec --no-startup-id i3-msg 'workspace 6; exec discord; workspace 1'
 
 # Make all Windows on Workspace 7 floating
 for_window [workspace="7"] floating enable
