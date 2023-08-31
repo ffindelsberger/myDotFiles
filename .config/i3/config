@@ -272,9 +272,8 @@ for_window [class="Progress_bar"] floating enable
 assign [class = "Ferdium"] $ws4
 
 #Autostarts / Run program on startup 
-exec --no-startup-id i3-msg 'workspace 4; exec ferdium; workspace 1'
-exec --no-startup-id i3-msg 'workspace 6; exec discord; workspace 1'
-
+exec --no-startup-id i3-msg 'workspace 4; exec ferdium; workspace 4'
+exec --no-startup-id i3-msg 'workspace 6; exec discord; workspace 6'
 # Make all Windows on Workspace 7 floating
 for_window [workspace="7"] floating enable
 
