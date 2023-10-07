@@ -11,7 +11,7 @@ return {
         indent = {
           char = '┊',
         },
-        show_trailing_blankline_indent = false,
+        remove_blankline_trail = true,
       }
     end
   },
