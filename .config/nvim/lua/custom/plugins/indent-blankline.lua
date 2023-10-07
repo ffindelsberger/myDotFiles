@@ -11,7 +11,9 @@ return {
         indent = {
           char = '┊',
         },
-        remove_blankline_trail = true,
+        whitespace = {
+          remove_blankline_trail = true,
+        },
       }
     end
   },
