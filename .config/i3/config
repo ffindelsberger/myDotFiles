@@ -226,7 +226,9 @@ bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/pn
 # Switch to the single image line if you dont have a wallpapers folder
 exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/data/git/wallpapers'
 #exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
-#exec_always --no-startup-id curl localhost:3000/file | feh --randomize --no-fehbg --bg-fill 
+
+# This line fetches a random wallapper from my static file server
+#exec_always --no-startup-id curl localhost:3000/file | feh --no-fehbg --bg-fill 
 
 ###########
 ###Bar#####
