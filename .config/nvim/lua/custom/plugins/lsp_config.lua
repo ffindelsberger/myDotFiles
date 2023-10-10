@@ -79,6 +79,7 @@ return {
         -- pyright = {},
         --astro = {},
         rust_analyzer = {},
+        clangd = {},
         --tsserver = {},
         lua_ls = {
           Lua = {
