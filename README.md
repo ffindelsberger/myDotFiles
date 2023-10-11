@@ -27,6 +27,8 @@ Make sure the following Fonts are installed:
 - feh : for setting background images in i3
 - polybar : bar for i3
 
+- unzip : the lsp for c (clangd) uses unzip to install the lsp, usually unzip is present on most systems. If you dont need the c lsp just disable it in the lsp config file
+
 
 
 ## Tmux
