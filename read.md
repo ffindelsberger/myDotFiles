@@ -4,7 +4,7 @@
 Welcome to my dot files repository! This repository contains configuration files and settings for various tools and applications to customize my Desktop/development environment. Below, you'll find links to the specific configuration files for Neovim, Tmux, Terminal, and i3, along with some general information about how to use these dot files.
 
 The Target Plattforms for these .files are Linux Distros as Well as MacOs.
-The .files are grouped into two main Areas, Development Environment and Desktop Environment. If you are on MacOS then you are probably Interested in the Development-Environment Section as the Desktop Section won't work for you anyway.
+The .files are grouped into two main Areas, Development and Desktop Environment. If you are on MacOS then you are probably Interested in the Development-Environment Section as the Desktop Section won't work for you anyway.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ The .files are grouped into two main Areas, Development Environment and Desktop 
 #### Theme
 The color Palette for Neovim as well as my i3 Desktop Configuration is in line with the Gruvbox color Palete
 
-![theme image] (theme.png picture)
+![theme image](theme.png picture)
 
 #### Font
 
