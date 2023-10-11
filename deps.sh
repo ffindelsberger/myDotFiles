@@ -7,7 +7,17 @@ dependencies_linux=("feh:for setting background images in i3"
 dependencies_common=("rg: (ripgrep) used in nevom telescope plugin"
                      "unzip:used to install the c (clangd) lsp")
 
-missing_dependencies=()
+# Function to check a dependency
+check_dependency() {
+    local dependency="$1"
+    local explanation="$2"
+
+    if command -v "$dependency" &> /dev/null; then
+        echo "Dependency '$dependency' ($explanation) is installed."
+    else
+        echo "Dependency '$dependency' ($explanation) is not installed."
+    fi
+}
 
 # Check if the OS is Linux
 if [ "$(uname)" == "Linux" ]; then
@@ -15,29 +25,22 @@ if [ "$(uname)" == "Linux" ]; then
         dependency=$(echo "$dependency_info" | cut -d':' -f1)
         explanation=$(echo "$dependency_info" | cut -d':' -f2)
 
-        if ! command -v "$dependency" &> /dev/null; then
-            missing_dependencies+=("$dependency ($explanation)")
-        fi
+        check_dependency "$dependency" "$explanation"
     done
-elif [ "$(uname)" == "Darwin" ]; then
-    # macOS-specific dependencies
+
     for dependency_info in "${dependencies_common[@]}"; do
         dependency=$(echo "$dependency_info" | cut -d':' -f1)
         explanation=$(echo "$dependency_info" | cut -d':' -f2)
 
-        if ! command -v "$dependency" &> /dev/null; then
-            missing_dependencies+=("$dependency ($explanation)")
-        fi
+        check_dependency "$dependency" "$explanation"
+    done
+elif [ "$(uname)" == "Darwin" ]; then
+    for dependency_info in "${dependencies_common[@]}"; do
+        dependency=$(echo "$dependency_info" | cut -d':' -f1)
+        explanation=$(echo "$dependency_info" | cut -d':' -f2)
+
+        check_dependency "$dependency" "$explanation"
     done
 else
     echo "The script is running on an unsupported system."
-fi
-
-if [ ${#missing_dependencies[@]} -eq 0 ]; then
-    echo "All dependencies are installed."
-else
-    echo "The following dependencies are missing:"
-    for dep in "${missing_dependencies[@]}"; do
-        echo " - $dep"
-    done
 fi
