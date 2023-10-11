@@ -27,6 +27,8 @@ The .files are grouped into two main Areas, Development Environment and Desktop 
 #### Theme
 The color Palette for Neovim as well as my i3 Desktop Configuration is in line with the Gruvbox color Palete
 
+![theme image] (/theme.png)
+
 #### Font
 
 The Main Font is Inconsolata, it is used in the Terminal and Nvim config, make sure a Nerd Font version of Inconsolata is installed
