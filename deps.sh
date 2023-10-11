@@ -1,17 +1,27 @@
 #!/bin/bash
 
-dependencies=("ripgrep:used in nevom telescope plugin"
-              "maim:used as a screenshot tool for 'Print'"
-              "feh:for setting background images in i3"
-              "polybar:bar for i3"
-              "unzip:used to install the c (clangd) lsp")
+dependencies_linux=("feh:for setting background images in i3"
+                    "maim:used as a screenshot tool for 'Print'"
+                    "polybar:bar for i3")
+
+dependencies_common=("rg: (ripgrep) used in nevom telescope plugin"
+                     "unzip:used to install the c (clangd) lsp")
 
 missing_dependencies=()
 
-# Check if the OS is a Linux distribution
+# Check if the OS is Linux
 if [ "$(uname)" == "Linux" ]; then
-    # Linux-specific dependencies
-    for dependency_info in "${dependencies[@]}"; do
+    for dependency_info in "${dependencies_linux[@]}"; do
+        dependency=$(echo "$dependency_info" | cut -d':' -f1)
+        explanation=$(echo "$dependency_info" | cut -d':' -f2)
+
+        if ! command -v "$dependency" &> /dev/null; then
+            missing_dependencies+=("$dependency ($explanation)")
+        fi
+    done
+elif [ "$(uname)" == "Darwin" ]; then
+    # macOS-specific dependencies
+    for dependency_info in "${dependencies_common[@]}"; do
         dependency=$(echo "$dependency_info" | cut -d':' -f1)
         explanation=$(echo "$dependency_info" | cut -d':' -f2)
 
@@ -20,7 +30,7 @@ if [ "$(uname)" == "Linux" ]; then
         fi
     done
 else
-    echo "The script is running on a non-Linux system (macOS)."
+    echo "The script is running on an unsupported system."
 fi
 
 if [ ${#missing_dependencies[@]} -eq 0 ]; then
