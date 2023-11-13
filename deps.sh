@@ -1,11 +1,12 @@
 #!/bin/bash
 
-dependencies_linux=("feh:for setting background images in i3"
-                    "maim:used as a screenshot tool for 'Print'"
-                    "polybar:bar for i3")
+dependencies_linux=("feh: used in Desktop Env for setting background images in i3"
+                    "maim: used in Desktop Env as a screenshot tool for 'Print'"
+                    "polybar: used in Desktop Env, bar for i3")
 
 dependencies_common=("rg: (ripgrep) used in nevom telescope plugin"
-                     "unzip:used to install the c (clangd) lsp")
+                     "unzip: used neovim to install the c (clangd) lsp"
+                     "wget: used in neovim by mason.nvim (core utils)")
 
 # Function to check a dependency
 check_dependency() {
@@ -24,7 +25,6 @@ if [ "$(uname)" == "Linux" ]; then
     for dependency_info in "${dependencies_linux[@]}"; do
         dependency=$(echo "$dependency_info" | cut -d':' -f1)
         explanation=$(echo "$dependency_info" | cut -d':' -f2)
-
         check_dependency "$dependency" "$explanation"
     done
 
