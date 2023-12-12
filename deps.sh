@@ -6,7 +6,8 @@ dependencies_linux=("feh: used in Desktop Env for setting background images in i
 
 dependencies_common=("rg: (ripgrep) used in nevom telescope plugin"
                      "unzip: used neovim to install the c (clangd) lsp"
-                     "wget: used in neovim by mason.nvim (core utils)")
+                     "wget: used in neovim by mason.nvim (core utils)"
+                     "fd: used in telescope (nvim)")
 
 # Function to check a dependency
 check_dependency() {
