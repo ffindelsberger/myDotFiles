@@ -11,6 +11,9 @@ return {
       -- See `:help nvim-treesitter`
       require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
+        -- add if you need :
+        -- dockerfile
+        --
         ensure_installed = { 'c', 'go', 'rust', 'javascript', 'typescript', 'vimdoc',
           'vim', 'html', 'css', 'toml', 'lua', 'json', 'yaml', 'dockerfile' },
 
