@@ -6,6 +6,7 @@
 
 --]]
 require("custom.neovim_settings")
+require("custom.keymappings")
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
