@@ -13,10 +13,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
--- When using Search keep cursor in the middle of the page when going to next match
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
 -- Diagnostic keymaps
 -- TODO: next and previous diagnostic should be in same key gourp i.E both should start with same key and afther that the direction is chosen
 vim.keymap.set('n', '<leader>kd', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
