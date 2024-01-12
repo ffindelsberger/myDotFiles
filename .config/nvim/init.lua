@@ -12,6 +12,7 @@ require("custom.keymappings")
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -35,32 +36,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Harpoon
-  'nvim-lua/plenary.nvim',
-  {
-    'ThePrimeagen/harpoon',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    branch = "harpoon2",
-
-    keys = {
-      { "<C-a>",     function() require("harpoon"):list():append() end,  desc = "harpoon file", },
-      {
-        "<C-e>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "harpoon quick menu",
-      },
-      { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1", },
-      { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "harpoon to file 2", },
-      { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "harpoon to file 3", },
-      { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "harpoon to file 4", },
-      { "<leader>5", function() require("harpoon"):list():select(5) end, desc = "harpoon to file 5", },
-    },
-  },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -122,6 +97,7 @@ require('lazy').setup({
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
+
 --07.08.2023 : When changing colorschme using the colorschme command the highlight groups would reset.
 --              with this autocommand we make sure that the highlight groups get cleared every time the Theme is changed
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -191,6 +167,5 @@ cmp.setup({
     { name = 'luasnip' },
   },
 })
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
