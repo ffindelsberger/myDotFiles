@@ -63,11 +63,11 @@ return {
         opts = {}
       },
 
-      {
-        -- RUST LSP
-        "simrat39/rust-tools.nvim",
-        dependencies = "neovim/nvim-lspconfig",
-      },
+      -- {
+      --   -- RUST LSP
+      --   "simrat39/rust-tools.nvim",
+      --   dependencies = "neovim/nvim-lspconfig",
+      -- },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       {
@@ -134,18 +134,40 @@ return {
         -- a handler override for the `rust_analyzer`:
         -- see ':h mason-lspconfig-commands'
         ["rust_analyzer"] = function()
-          local rt = require("rust-tools")
-          rt.setup({
-            server = {
-              on_attach = function(_, bufnr)
-                -- Hover actions
-                vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                -- Code action groups
-                vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-                generel_lsp_config(bufnr)
-              end,
+          -- local rt = require("rust-tools")
+          -- rt.setup({
+          --   server = {
+          --     on_attach = function(_, bufnr)
+          --       -- Hover actions
+          --       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+          --       -- Code action groups
+          --       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+          --       generel_lsp_config(bufnr)
+          --     end,
+          --   },
+          -- })
+
+          -- This is a temporary migration as "rust-tools" has been archived and is no longer maintend
+          vim.g.rustaceanvim = {
+            -- Plugin configuration
+            tools = {
             },
-          })
+            -- LSP configuration
+            server = {
+              on_attach = function(client, bufnr)
+                generel_lsp_config(bufnr)
+                -- you can also put keymaps in here
+              end,
+              settings = {
+                -- rust-analyzer language server configuration
+                ['rust-analyzer'] = {
+                },
+              },
+            },
+            -- DAP configuration
+            dap = {
+            },
+          }
         end
       }
 
