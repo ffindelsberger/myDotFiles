@@ -45,6 +45,12 @@ return {
   },
 
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    --priority = 1000
+  },
+
+  {
     -- The Main Theme
     'sainnhe/gruvbox-material',
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
@@ -53,7 +59,11 @@ return {
       --require("gruvbox-material").setup({
       --  foreground = 'original'
       --})
-      vim.cmd("let g:gruvbox_material_foreground = 'original'")
+
+
+      -- has no impact as backround is turned off
+      vim.cmd("let g:gruvbox_material_background = 'medium'")
+      vim.cmd("let g:gruvbox_material_foreground = 'mix'")
       vim.cmd("let g:gruvbox_material_transparent_background = '1'")
       vim.cmd("let g:gruvbox_material_diagnostic_virtual_text = 'colored' ")
       vim.cmd([[colorscheme gruvbox-material]])
