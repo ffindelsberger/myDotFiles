@@ -1,4 +1,4 @@
-function generel_lsp_config(bufnr)
+function set_generel_lsp_config(bufnr)
   -- In this case, we create_ a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
@@ -79,7 +79,7 @@ return {
       -- [[ Configure LSP ]]
       --  This function gets run when an LSP connects to a particular buffer.
       local on_attach = function(_, bufnr)
-        generel_lsp_config(bufnr)
+        set_generel_lsp_config(bufnr)
       end
 
       --  Enable the following language servers
@@ -91,12 +91,12 @@ return {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        --astro = {},
+        astro = {},
         rust_analyzer = {},
         clangd = {},
         gopls = {},
 
-        --tsserver = {},
+        tsserver = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },
@@ -155,7 +155,7 @@ return {
             -- LSP configuration
             server = {
               on_attach = function(client, bufnr)
-                generel_lsp_config(bufnr)
+                set_generel_lsp_config(bufnr)
                 -- you can also put keymaps in here
               end,
               settings = {
@@ -216,7 +216,7 @@ return {
           -- Tsserver usually works poorly. Sorry you work with bad languages
           -- You can remove this line if you know what you're doing :)
           if client.name == 'tsserver' then
-            return
+            -- return
           end
 
           -- Create an autocmd that will run *before* we save the buffer.
