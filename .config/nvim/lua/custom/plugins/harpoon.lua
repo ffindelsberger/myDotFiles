@@ -6,7 +6,7 @@ return {
   branch = "harpoon2",
 
   keys = {
-    { "<C-a>",     function() require("harpoon"):list():append() end,  desc = "harpoon file", },
+    { "<C-a>",     function() require("harpoon"):list():add() end,     desc = "harpoon file", },
     {
       "<C-e>",
       function()

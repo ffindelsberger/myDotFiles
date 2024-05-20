@@ -2,6 +2,7 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    version = 'v0.9.2',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -14,8 +15,8 @@ return {
         -- add if you need :
         -- dockerfile
         --
-        ensure_installed = { 'c', 'go', 'rust', 'javascript', 'typescript', 'vimdoc', 'java',
-          'vim', 'html', 'css', 'toml', 'lua', 'json', 'yaml', 'dockerfile', 'cpp' },
+        ensure_installed = { 'c', 'rust', 'javascript', 'typescript', 'vimdoc',
+          'vim', 'html', 'css', 'toml', 'lua', 'json', 'yaml', 'dockerfile' },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = false,
