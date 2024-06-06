@@ -51,10 +51,24 @@ return {
   },
 
   {
-    -- The Main Theme
-    'sainnhe/gruvbox-material',
+    'sainnhe/everforest',
+    name = "everforest",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      vim.cmd("let g:everforest_background = 'hard'")
+      vim.cmd("let g:everforest_foreground = 'hard'")
+      vim.cmd("let g:everforest_transparent_background = '1'")
+      vim.cmd("let g:everforest_diagnostic_virtual_text = 'colored' ")
+      vim.cmd([[colorscheme everforest]])
+    end
+  },
+
+  {
+    -- The Main Theme
+    'sainnhe/gruvbox-material',
+    -- lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    -- priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       --require("gruvbox-material").setup({
       --  foreground = 'original'
@@ -63,10 +77,10 @@ return {
 
       -- has no impact as backround is turned off
       vim.cmd("let g:gruvbox_material_background = 'medium'")
-      vim.cmd("let g:gruvbox_material_foreground = 'mix'")
+      vim.cmd("let g:gruvbox_material_foreground = 'material'")
       vim.cmd("let g:gruvbox_material_transparent_background = '1'")
       vim.cmd("let g:gruvbox_material_diagnostic_virtual_text = 'colored' ")
-      vim.cmd([[colorscheme gruvbox-material]])
+      --vim.cmd([[colorscheme gruvbox-material]])
     end,
   }
 }
