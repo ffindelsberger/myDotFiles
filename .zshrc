@@ -11,11 +11,21 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Path to neovim installation
+# (me) Path to neovim installation
 export PATH="$HOME/neovim/bin:$PATH"
 
-# Path for mtr
+# (me) Path for mtr
 export PATH="$PATH:/usr/local/sbin"
+
+# (me) Path for IINA media player cli
+export PATH="$PATH:/Users/florianfindelsberger/private/apps/IINA.app/Contents/MacOS/iina-cli"
+
+# (me) Include Homebrew paths for gcc and linker so they can find dependencies which are installed using homebrew
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+export CPATH="$CPATH:/opt/homebrew/include"
+
+# (me) set the k9s config dir to .config and not "Application Support" folder
+export K9S_CONFIG_DIR="/Users/florianfindelsberger/.config/k9s"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -23,7 +33,7 @@ export PATH="$PATH:/usr/local/sbin"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
- # Set list of themes to pick from when loading at random
+# Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
@@ -118,11 +128,15 @@ alias coc="cargo check"
 alias nv="nvim"
 alias lgit="lazygit"
 alias vim="nvim"
+alias cdcode="cd ~/private/data/git"
 
-#Alias for internetX Dev-Kubernets namespace
+#(me) Aliases for working with multiple jdk versions
+alias mvn8="JAVA_HOME=/Users/florianfindelsberger/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home && mvn"
+
+#(me) Alias for internetX Dev-Kubernets namespace
 alias kubedev="kubectl -n autodns-backend-dev"
 
-#function for using lnav together with kubectl
+#(me) function for using lnav together with kubectl
 alias kdl="klg -n autodns-backend-dev"
 function klg () {
     /Users/florianfindelsberger/private/data/git/tools/klg/klg.sh $@
@@ -135,7 +149,6 @@ function klg () {
 #source /usr/share/doc/fzf/examples/key-bindings.zsh
 # Enable fzf auto-completion
 #source /usr/share/doc/fzf/examples/completion.zsh
-
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"

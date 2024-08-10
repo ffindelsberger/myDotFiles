@@ -17,7 +17,7 @@ function set_generel_lsp_config(bufnr)
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>sl', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace Lsp [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -64,13 +64,12 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local lsp_servers = {
-  -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  astro = {},
+  --astro = {},
   rust_analyzer = {},
   clangd = {},
-  gopls = {},
+  --gopls = {},
 
   tsserver = {},
   lua_ls = {
@@ -164,11 +163,10 @@ return {
                 set_generel_lsp_config(bufnr)
                 -- you can also put keymaps in here
               end,
-              settings = {
-                -- rust-analyzer language server configuration
-                ['rust-analyzer'] = {
-                },
-              },
+              -- settings = {
+              --   -- rust-analyzer language server configuration
+              --   -- ['rust-analyzer'] = {},
+              -- },
             },
             -- DAP configuration
             dap = {

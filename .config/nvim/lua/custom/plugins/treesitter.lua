@@ -2,7 +2,7 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    version = 'v0.9.2',
+    --version = 'v0.9.2',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },

@@ -83,4 +83,23 @@ return {
       --vim.cmd([[colorscheme gruvbox-material]])
     end,
   }
+  ,
+  {
+    'ribru17/bamboo.nvim'
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    opts = {
+      transparent = true
+    },
+  }
+  ,
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    opts = {
+      transparent = true,
+    },
+  }
 }
