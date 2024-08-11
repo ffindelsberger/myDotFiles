@@ -35,12 +35,36 @@ function set_generel_lsp_config(bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-
-  -- make Documentation window have rounded border
-  -- maybe i need o call this only once tho, for now it stays here
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 end
+
+-- Specify how the border looks like
+-- local border = {
+--   { '┌', 'FloatBorder' },
+--   { '─', 'FloatBorder' },
+--   { '┐', 'FloatBorder' },
+--   { '│', 'FloatBorder' },
+--   { '┘', 'FloatBorder' },
+--   { '─', 'FloatBorder' },
+--   { '└', 'FloatBorder' },
+--   { '│', 'FloatBorder' },
+-- }
+local border_round = {
+  { "╭", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╮", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "╯", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╰", "FloatBorder" },
+  { "│", "FloatBorder" },
+}
+
+-- LSP settings (for overriding per client)
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
+}
+
 
 -- function set_jdtl_lsp_config(jdtls, bufnr)
 --   local nmap = function(keys, func, desc)
@@ -146,6 +170,7 @@ return {
             capabilities = capabilities,
             on_attach = on_attach_default,
             settings = lsp_servers[server_name],
+            handlers = handlers,
           }
         end,
         -- We have to register a dedicated handler for rust_analyzer becaue it is managed
@@ -156,17 +181,22 @@ return {
           vim.g.rustaceanvim = {
             -- Plugin configuration
             tools = {
+              float_win_config = {
+                border = 'rounded'
+              }
             },
             -- LSP configuration
             server = {
-              on_attach = function(client, bufnr)
+              on_attach = function(_, bufnr)
                 set_generel_lsp_config(bufnr)
                 -- you can also put keymaps in here
               end,
-              -- settings = {
-              --   -- rust-analyzer language server configuration
-              --   -- ['rust-analyzer'] = {},
-              -- },
+              settings = {
+                -- rust-analyzer language server configuration
+                -- ['rust-analyzer'] = {
+                --   --handlers = handlers,
+                -- },
+              },
             },
             -- DAP configuration
             dap = {

@@ -47,7 +47,14 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    --priority = 1000
+    init = function()
+      -- must be called before opts -> that why init func and not conf
+      vim.cmd([[colorscheme catppuccin-mocha]])
+    end,
+    opts = {
+      transparent_background = true,
+    },
+    priority = 1000
   },
 
   {
@@ -60,7 +67,7 @@ return {
       vim.cmd("let g:everforest_foreground = 'hard'")
       vim.cmd("let g:everforest_transparent_background = '1'")
       vim.cmd("let g:everforest_diagnostic_virtual_text = 'colored' ")
-      vim.cmd([[colorscheme everforest]])
+      --vim.cmd([[colorscheme everforest]])
     end
   },
 
