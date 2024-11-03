@@ -4,7 +4,6 @@ return {
     'nvim-lua/plenary.nvim',
   },
   branch = "harpoon2",
-
   keys = {
     { "<C-a>",     function() require("harpoon"):list():add() end,     desc = "harpoon file", },
     {

@@ -15,7 +15,7 @@ return {
         -- add if you need :
         -- dockerfile
         --
-        ensure_installed = { 'c', 'rust', 'javascript', 'typescript', 'vimdoc',
+        ensure_installed = { 'c', 'rust', 'vimdoc', 'cpp',
           'vim', 'html', 'css', 'toml', 'lua', 'json', 'yaml', 'dockerfile' },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
