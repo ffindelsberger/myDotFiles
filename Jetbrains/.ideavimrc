@@ -1,0 +1,62 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader = " "
+
+""" Idea Settings ------------------------------
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=10
+" Do incremental searching.
+set incsearch
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+"""---------------------------------------------
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Keep in Mind that some actions are still triggered by native Intellij Keybinds i.E. "close a Tab" or open "git Toolbar". these are not reflected in the .vimrc
+
+" Window navigation
+map <C-w-v> <Action>(SplitVertically)
+" Next Tab only works as expected if you have disabled tab bar in the gui menu
+map <C-w-w> <Action>(NextTab)
+
+" Closing the Terminal windows does not work properly at the moment, using built in intellij keybinding at the moment
+" map <C-t> <Action>(ActivateTerminalToolWindow)
+map <leader>f <Action>(ReformatCode)
+nmap <leader>gc <Action>(CommentByBlockComment)
+map <leader>e <Action>(ShowErrorDescription)
+map <leader>je <Action>(GotoNextError)
+map <leader>ke <Action>(GotoPreviousError)
+map <leader>la <Action>(ShowIntentionActions)
+map <leader>l <Action>(SaveAll)
+
+" Run Configuration
+map <leader>r <Action>(Run)
+map <leader>rd <Action>(Debug)
+
+" Debug mappings
+map <leader>tb <Action>(ToggleLineBreakpoint)
+
+" maven stuff
+map <leader>md <Action>(Maven.NavigatorDependencyAnalyzer)
+
+"" Harpoon
+nmap <leader>1 :action GotoHarpoon1<cr>
+nmap <leader>2 :action GotoHarpoon2<cr>
+nmap <leader>3 :action GotoHarpoon3<cr>
+nmap <leader>4 :action GotoHarpoon4<cr>
+nmap <leader>5 :action GotoHarpoon4<cr>
+nmap <C-e> :action ShowHarpoon<cr>
+nmap <C-a> :action AddToHarpoon<cr>
+
