@@ -1,4 +1,4 @@
-function set_generel_lsp_config(bufnr)
+local function set_generel_lsp_config(bufnr)
   -- In this case, we create_ a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
@@ -63,7 +63,6 @@ local handlers = {
   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
 }
-
 
 --  Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -133,8 +132,9 @@ return {
       require('neodev').setup()
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
@@ -215,12 +215,13 @@ return {
             return
           end
 
+          -- Disable semantic Tokens
+          client.server_capabilities.semanticTokensProvider = nil
+
           if client.name == 'clangd' then
             print("dont enable autoformat for clangd")
             return
           end
-
-
           -- Create an autocmd that will run *before* we save the buffer.
           --  Run the formatting command for the LSP that has just attached.
           vim.api.nvim_create_autocmd('BufWritePre', {
@@ -269,13 +270,10 @@ return {
             end
             vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
           end
-          nmap('<leader>fr', function()
-            vim.cmd.RustLsp('renderDiagnostic')
-          end, 'explain error')
-          nmap('<leader>fc', function()
-            vim.cmd.RustLsp('openCargo')
-          end, 'open Cargo')
-        end
+          nmap('<leader>fr', function() vim.cmd.RustLsp('renderDiagnostic') end, 'explain error')
+          nmap('<leader>fc', function() vim.cmd.RustLsp('openCargo') end, 'open Cargo')
+        end,
+        capabilities = require('blink.cmp').get_lsp_capabilities()
       }
     }
   }
