@@ -201,11 +201,12 @@ return {
 
           if client == nil then
             print("INFO@lsp-attach-format: client is nil. can't create autocmd")
+            return;
           end
 
           -- Only attach to clients that support document formatting
           if not client.server_capabilities.documentFormattingProvider then
-            print(tostring(client.name) .. 'does not support document Formatting')
+            print("INFO@lsp-attach-format:" .. tostring(client.name) .. 'does not support document Formatting')
             return
           end
 
@@ -215,13 +216,15 @@ return {
             return
           end
 
+
+          if client.name == 'clangd' then
+            print("INFO@lsp-attach-format: dont enable autoformat for clangd")
+            return
+          end
+
           -- Disable semantic Tokens
           client.server_capabilities.semanticTokensProvider = nil
 
-          if client.name == 'clangd' then
-            print("dont enable autoformat for clangd")
-            return
-          end
           -- Create an autocmd that will run *before* we save the buffer.
           --  Run the formatting command for the LSP that has just attached.
           vim.api.nvim_create_autocmd('BufWritePre', {
@@ -270,8 +273,10 @@ return {
             end
             vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
           end
-          nmap('<leader>fr', function() vim.cmd.RustLsp('renderDiagnostic') end, 'explain error')
-          nmap('<leader>fc', function() vim.cmd.RustLsp('openCargo') end, 'open Cargo')
+          nmap('<leader>rr', function() vim.cmd.RustLsp('renderDiagnostic') end, 'explain error')
+          nmap('<leader>rc', function() vim.cmd.RustLsp('openCargo') end, 'open Cargo')
+          nmap('<leader>rf', function() vim.cmd.RustLsp('runnables') end, 'show Runnables')
+          nmap('<leader>rm', function() vim.cmd.RustLsp('expandMacro') end, 'expand Macro')
         end,
         capabilities = require('blink.cmp').get_lsp_capabilities()
       }

@@ -5,6 +5,10 @@
 =====================================================================
 
 --]]
+
+-- remove this if this issue is resolved -> https://github.com/neovim/neovim/issues/31675
+vim.hl = vim.highlight
+
 require("custom.neovim_settings")
 require("custom.keymappings")
 

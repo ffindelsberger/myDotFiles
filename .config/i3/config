@@ -231,9 +231,10 @@ bindsym --release Print exec maim -s -u | xclip -selection clipboard -t image/pn
 
 #Wallpapers
 # Switch to the single image line if you dont have a wallpapers folder
-#exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/data/images/wallpapers'
+exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/data/images/wallpapers'
 #exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/Downloads/beautiful-city-view.jpg'
-exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/Downloads/japan_city_street.jpeg'
+#exec_always --no-startup-id feh --randomize --no-fehbg --bg-fill '/home/florian/Downloads/japan_city_street.jpeg'
+#exec_always --no-startup-id feh --no-fehbg --bg-fill "$(./skripts/wallpaper.sh /home/florian/data/images/wallpapers)"
 #exec_always --no-startup-id feh --no-fehbg --bg-fill '/home/florian/data/git/myDotFiles/smile.jpg'
 
 # This line fetches a random wallapper from my static file server
@@ -278,10 +279,13 @@ for_window [class="Arandr"] floating enable
 for_window [class="Pavucontrol"] floating enable, border normal
 for_window [class="Nautilus"] floating enable
 for_window [class="Eog"] floating enable
+#File Manager
+for_window [class="Pcmanfm"] floating enable 
+#Image viewer
+for_window [class="feh"] floating enable 
 
 # this line is used to make the gui app window i am working on to be floating. Find out the Window class by running "xprop WM_CLASS" and clicking on the window
 for_window [class="Progress_bar"] floating enable
-assign [class = "Ferdium"] $ws4
 
 # Make all Windows on Workspace 7 floating
 for_window [workspace="7"] floating enable
@@ -350,6 +354,7 @@ bindsym $mod+r mode "resize"
 ###########
 exec --no-startup-id picom -b --config ~/.config/picom.conf
 exec --no-startup-id i3-msg 'workspace 6; exec discord; workspace 6'
+exec --no-startup-id xmodmap ~/.Xmodmap
 
 
 
