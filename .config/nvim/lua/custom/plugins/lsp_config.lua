@@ -16,9 +16,9 @@ local function set_generel_lsp_config(bufnr)
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
-  nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  -- nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  --nmap('<leader>sl', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace Lsp [S]ymbols')
+  nmap('<leader>ls', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace Lsp [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -219,14 +219,14 @@ return {
             return
           end
 
+          -- Disable semantic Tokens
+          -- put after clangd to have it enabled for c++
+          client.server_capabilities.semanticTokensProvider = nil
 
           if client.name == 'clangd' then
             print("INFO@lsp-attach-format: dont enable autoformat for clangd")
             return
           end
-
-          -- Disable semantic Tokens
-          client.server_capabilities.semanticTokensProvider = nil
 
           -- Create an autocmd that will run *before* we save the buffer.
           --  Run the formatting command for the LSP that has just attached.
@@ -276,10 +276,10 @@ return {
             end
             vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
           end
-          nmap('<leader>rr', function() vim.cmd.RustLsp('renderDiagnostic') end, 'explain error')
-          nmap('<leader>rc', function() vim.cmd.RustLsp('openCargo') end, 'open Cargo')
+          nmap('<leader>le', function() vim.cmd.RustLsp('renderDiagnostic') end, 'explain error')
+          nmap('<leader>lc', function() vim.cmd.RustLsp('openCargo') end, 'open Cargo')
           nmap('<leader>rf', function() vim.cmd.RustLsp('runnables') end, 'show Runnables')
-          nmap('<leader>rm', function() vim.cmd.RustLsp('expandMacro') end, 'expand Macro')
+          nmap('<leader>lm', function() vim.cmd.RustLsp('expandMacro') end, 'expand Macro')
         end,
         capabilities = require('blink.cmp').get_lsp_capabilities()
       }

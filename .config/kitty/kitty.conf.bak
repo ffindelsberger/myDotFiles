@@ -2,7 +2,7 @@
 
 #include everforest.conf
 #include catppucin_machiato.conf
-#include mocha.conf
+include mocha.conf
 
 #: Fonts {{{
 
@@ -2533,9 +2533,3 @@ background_blur 16
 #: }}}
 
 #: }}}
-
-
-# BEGIN_KITTY_THEME
-# Kanagawa_dragon
-include current-theme.conf
-# END_KITTY_THEME

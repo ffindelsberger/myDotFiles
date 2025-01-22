@@ -125,11 +125,29 @@ set $ws2 "2: IDE"
 set $ws3 "3: Web"
 set $ws4 "4:"
 set $ws5 "5: Custom"
-set $ws6 "6: Discord"
+set $ws6 "6:"
 set $ws7 "7: Float"
-set $ws8 "8: Music"
-set $ws9 "9"
-set $ws10 "10"
+set $ws8 "8: Music" 
+set $ws9 "9: Discord"
+set $ws10 "10: Obsidian"
+
+
+# Assign workspaces to monitors
+# use xrandr --listmonitors to list the connected monitor names
+workspace $ws1  output "DP-2"
+workspace $ws2  output "DP-2"
+workspace $ws3  output "DP-2"
+workspace $ws4  output "DP-2"
+workspace $ws5  output "DP-2"
+workspace $ws6  output "DP-2"
+workspace $ws7  output "DP-2"
+workspace $ws8  output "HDMI-0"
+workspace $ws9  output "HDMI-0"
+workspace $ws10 output "HDMI-0"
+
+# Put larger Borders on first Workspace
+workspace $ws1 gaps inner 40
+workspace 8 gaps inner 40
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -216,11 +234,6 @@ gaps left 0
 gaps right 0
 gaps bottom 0
 #gaps outer 0
-
-# Put larger Borders on first Workspace
-workspace 1 gaps inner 40
-workspace 8 gaps inner 40
-
 
 #end of window title bars & borders section
 
@@ -353,7 +366,7 @@ bindsym $mod+r mode "resize"
 #Autostart#
 ###########
 exec --no-startup-id picom -b --config ~/.config/picom.conf
-exec --no-startup-id i3-msg 'workspace 6; exec discord; workspace 6'
+#exec --no-startup-id i3-msg 'workspace 9; exec discord; workspace 9'
 exec --no-startup-id xmodmap ~/.Xmodmap
 
 

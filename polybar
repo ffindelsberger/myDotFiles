@@ -25,57 +25,19 @@ secondary = #8ABEB7
 alert = #A54242
 disabled = #707880
 
-;Catppuccin colors
-rosewater = #f5e0dc
-flamingo = #f2cdcd
-pink = #f5c2e7
-mauve = #cba6f7
-red = #f38ba8
-maroon = #eba0ac
-peach = #fab387
-yellow = #f9e2af
-green = #a6e3a1
-teal = #94e2d5
-sky = #89dceb
-sapphire = #74c7ec
-blue = #89b4fa
-lavender = #b4befe
-text = #cdd6f4
-subtext1 = #bac2de
-subtext0 = #a6adc8
-overlay2 = #9399b2
-overlay1 = #7f849c
-overlay0 = #6c7086
-surface2 = #585b70
-surface1 = #45475a
-surface0 = #313244
-base = #1e1e2e
-mantle = #181825
-crust = #11111b
-transparent = #FF00000
-
-
 [bar/example]
 width = 100%
-; size for 4k screen
-height = 25pt
-;size for QHD screen
-;height = 20pt
-;radius = 0
+height = 24pt
+radius = 6
 
 ; dpi = 96
-;
 
-bottom = true
-
-background = ${colors.base}
-foreground = ${colors.text}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 line-size = 3pt
 
-; Polybar uses an invisible border to add "gaps" around the bar. setting the size to 0pt removes the gaps
-border-size = 0pt
-
+border-size = 4pt
 border-color = #00000000
 
 padding-left = 0
@@ -86,7 +48,7 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.disabled}
 
-font-0 = monospace:size=12;2
+font-0 = monospace;2
 
 modules-left = xworkspaces xwindow
 modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth date
@@ -120,8 +82,8 @@ tray-spacing = 16pt
 type = internal/xworkspaces
 
 label-active = %name%
-label-active-background = ${colors.overlay0}
-label-active-underline= ${colors.mauve}
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
 label-active-padding = 1
 
 label-occupied = %name%
@@ -154,7 +116,7 @@ label-unmounted-foreground = ${colors.disabled}
 type = internal/pulseaudio
 
 format-volume-prefix = "VOL "
-format-volume-prefix-foreground = ${colors.mauve}
+format-volume-prefix-foreground = ${colors.primary}
 format-volume = <label-volume>
 
 label-volume = %percentage%%
@@ -167,7 +129,7 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 label-layout = %layout%
-label-layout-foreground = ${colors.mauve}
+label-layout-foreground = ${colors.primary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -178,14 +140,14 @@ label-indicator-background = ${colors.secondary}
 type = internal/memory
 interval = 2
 format-prefix = "RAM "
-format-prefix-foreground = ${colors.mauve}
+format-prefix-foreground = ${colors.primary}
 label = %percentage_used:2%%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = "CPU "
-format-prefix-foreground = ${colors.mauve}
+format-prefix-foreground = ${colors.primary}
 label = %percentage:2%%
 
 [network-base]
@@ -213,7 +175,7 @@ date = %H:%M
 date-alt = %Y-%m-%d %H:%M:%S
 
 label = %date%
-label-foreground = ${colors.mauve}
+label-foreground = ${colors.primary}
 
 [settings]
 screenchange-reload = true

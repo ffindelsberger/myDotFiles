@@ -96,5 +96,68 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+
+--======================================================================================================================
+--==================================================== MY COMMANDS =====================================================
+--======================================================================================================================
+
+vim.api.nvim_create_user_command('Dblock', function(opts)
+  local text = opts.args or ""
+  local len = #text
+  local sides = (118 - len) / 2
+
+  local dashes = "//"
+  dashes = dashes .. string.rep('-', sides) .. text .. string.rep('-', sides)
+  vim.api.nvim_put({ dashes }, 'l', true, true)
+end, {
+  nargs = '?',
+})
+
+vim.api.nvim_create_user_command('Pblock', function(opts)
+  local text = opts.args or ""
+  local len = #text
+  local sides = (118 - len) / 2
+
+  local start = "//" .. string.rep('=', 118)
+  local middle = "//" .. string.rep('=', sides - 1) .. " " .. text .. " " .. string.rep('=', sides - 1)
+  local ende = "//" .. string.rep('=', 118)
+  local lines = { start, middle, ende }
+  vim.api.nvim_put(lines, 'l', true, true)
+end, {
+  nargs = '?'
+})
+
+----------------------------------------------------- COMPILE COMMAND --------------------------------------------------
+
+local stored_ccomand = nil
+
+vim.api.nvim_create_user_command("CComand", function(opts)
+  stored_ccomand = opts.args
+end, {
+  nargs = 1,
+  desc = "Store a compile command for the current nvim session"
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "RunCcomand",
+  desc = "Run the stored compile command",
+  callback = function()
+    if stored_ccomand then
+    else
+      print("No stored compile command. Use 'CComand' to store a compile command")
+    end
+  end
+})
+
+vim.keymap.set("n", "<leader>C", function()
+  vim.api.nvim_exec_autocmds("User", { pattern = "RunCcomand" })
+end, {
+  silent = true,
+  noremap = true,
+  desc = "run compile command"
+})
+
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

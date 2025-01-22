@@ -24,7 +24,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- leader s would be way better for save but i alredy have all my telescope bindings on s and w is already for workspace commands
-vim.keymap.set('n', "<leader>l", "<cmd> w <CR>", { desc = 'save the file' })
+vim.keymap.set('n', "<leader>w", "<cmd> w <CR>", { desc = 'save the file' })
 vim.keymap.set('n', "<C-s>", "<cmd> w <CR>", { desc = 'save the file' })
 
 -- "find" and replace the current word
