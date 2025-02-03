@@ -41,7 +41,8 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 27.Januar : setzt mein zeug immer auf tabstop = 8 in den cpp files von rtgi was ned stimmt-> deswegen erstmal raus damit
+  --'tpope/vim-sleuth',
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',   opts = {} },
@@ -142,7 +143,9 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "RunCcomand",
   desc = "Run the stored compile command",
   callback = function()
+    local term = require("toggleterm");
     if stored_ccomand then
+      term.exec(stored_ccomand)
     else
       print("No stored compile command. Use 'CComand' to store a compile command")
     end
@@ -158,6 +161,38 @@ end, {
 })
 
 
+----------------------------------------------------- RUN COMMAND --------------------------------------------------
+
+
+local stored_rcomand = nil
+
+vim.api.nvim_create_user_command("RComand", function(opts)
+  stored_rcomand = opts.args
+end, {
+  nargs = 1,
+  desc = "Store a compile command for the current nvim session"
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "RunRcomand",
+  desc = "Run the stored compile command",
+  callback = function()
+    local term = require("toggleterm");
+    if stored_rcomand then
+      term.exec(stored_rcomand)
+    else
+      print("No stored run command. Use 'RComand' to store a compile command")
+    end
+  end
+})
+
+vim.keymap.set("n", "<leader>R", function()
+  vim.api.nvim_exec_autocmds("User", { pattern = "RunRcomand" })
+end, {
+  silent = true,
+  noremap = true,
+  desc = "execute run command"
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

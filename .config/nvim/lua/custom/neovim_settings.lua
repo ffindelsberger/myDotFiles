@@ -7,10 +7,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 -- Tabs and space Settings
-vim.o.shiftwidth = 4
 vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
 vim.wo.relativenumber = true
 
