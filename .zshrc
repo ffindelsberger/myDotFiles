@@ -1,37 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# (me) Path to neovim installation
-export PATH="$HOME/neovim/bin:$PATH"
-
-# (me) Path for mtr
-export PATH="$PATH:/usr/local/sbin"
-
-# (me) Path for IINA media player cli
-export PATH="$PATH:/Users/florianfindelsberger/private/apps/IINA.app/Contents/MacOS/iina-cli"
-
-# (me) Include Homebrew paths for gcc and linker so they can find dependencies which are installed using homebrew
-export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
-export CPATH="$CPATH:/opt/homebrew/include"
-
-# (me) set the k9s config dir to .config and not "Application Support" folder
-export K9S_CONFIG_DIR="/Users/florianfindelsberger/.config/k9s"
-
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -93,7 +70,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -109,46 +85,58 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cor="cargo run"
-alias coc="cargo check"
+#
+#
+#####################################################################################################################################
+#####################################################################################################################################
+#					Until here is oh my zsh default file
+#####################################################################################################################################
+#####################################################################################################################################
+#ME
+#
+#
+
 alias nv="nvim"
 alias lgit="lazygit"
-alias vim="nvim"
-alias cdcode="cd ~/private/data/git"
+alias coc="cargo build"
+alias cor="cargo run"
 
-#(me) Aliases for working with multiple jdk versions
-alias mvn8="JAVA_HOME=/Users/florianfindelsberger/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home && mvn"
+# To add something to all the paths lezs go (usd for Bachelor thesis to add stuff like embree on the path)
+function add_prefix() {
+	export PATH=$1/bin:$PATH
+	export CPPFLAGS="-I $1/include $CPPFLAGS"
+	export LD_LIBRARY_PATH=$1/lib:$1/lib64:$LD_LIBRARY_PATH
+	export LD_RUN_PATH=$1/lib:$1/lib64:$LD_RUN_PATH
+	export LDFLAGS="-L$1/lib -L$1/lib64 $LDFLAGS"
+	export PKG_CONFIG_PATH=$1/lib/pkgconfig:$PKG_CONFIG_PATH
+}
+add_prefix /home/florian/data/git/graphics/rtgi-libs/embree 
 
-#(me) Alias for internetX Dev-Kubernets namespace
-alias kubedev="kubectl -n autodns-backend-dev"
-
-#(me) function for using lnav together with kubectl
-alias kdl="klg -n autodns-backend-dev"
-function klg () {
-    /Users/florianfindelsberger/private/data/git/tools/klg/klg.sh $@
+kitty-reload() {
+    kill -SIGUSR1 $(pidof kitty)
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
-# Enable fzf keybindings 
-#source /usr/share/doc/fzf/examples/key-bindings.zsh
-# Enable fzf auto-completion
-#source /usr/share/doc/fzf/examples/completion.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH="/opt/homebrew/opt/bison/bin:$PATH"
+#zsh-syntax-highlighting (has to be at the end)
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
