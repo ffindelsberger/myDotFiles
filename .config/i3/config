@@ -290,6 +290,7 @@ for_window [window_role="task_dialog"] floating enable
 
 for_window [class="Arandr"] floating enable
 for_window [class="Pavucontrol"] floating enable, border normal
+# TODO: can be removed as i dont use Nautilus anymore
 for_window [class="Nautilus"] floating enable
 for_window [class="Eog"] floating enable
 #File Manager
@@ -307,16 +308,16 @@ for_window [workspace="7"] floating enable
 ###Modes###
 ###########
 
-set $mode_display Config monitor resolution - My first config (d) - My second config (t)
+set $mode_display Config monitor resolution - dual monitor left (d) - My second config (t)
+bindsym $mod+$shift+s mode "$mode_display"
 mode "$mode_display" {
-    #bindsym d exec --no-startup-id xrandr --output VGA-1 --off --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output HDMI-2 --off --output HDMI-1 --off --output DP-2 --off --output DP-1 --off && ~/.fehbg, mode "default"
+    bindsym d exec --no-startup-id xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-3 --off --output HDMI-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-4 --off --output DP-5 --off
     bindsym t exec --no-startup-id xrandr --output eDP-1 --off --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output DP-3 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-4 --off --output DP-5 --off
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+$shift+x mode "$mode_display"
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
