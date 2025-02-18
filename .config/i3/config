@@ -40,6 +40,12 @@ exec --no-startup-id nm-applet
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# pipewire audio controlls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -289,7 +295,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 for_window [class="Arandr"] floating enable
-for_window [class="Pavucontrol"] floating enable, border normal
+for_window [class="pavucontrol"] floating enable, border normal
 # TODO: can be removed as i dont use Nautilus anymore
 for_window [class="Nautilus"] floating enable
 for_window [class="Eog"] floating enable
@@ -362,6 +368,8 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+bindsym  XF86Favorites exec ~/data/git/myDotFiles/scripts/polybar_toggle.sh
 
 ###########
 #Autostart#

@@ -137,6 +137,5 @@ kitty-reload() {
 source <(fzf --zsh)
 
 #zsh-syntax-highlighting (has to be at the end)
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
