@@ -30,11 +30,13 @@ return {
 				{ desc = '[?] Find recently opened files' })
 			vim.keymap.set('n', '<leader><space>', require('telescope.builtin').find_files,
 				{ desc = '[ ] Find all Files' })
-			vim.keymap.set('n', '<leader>sF', require('telescope.builtin').find_files {
-					cwd = vim.fn.expand("$HOME"),
-					hidden = true,
-					no_ignore = true,
-				},
+			vim.keymap.set('n', '<leader>sF', function()
+					require('telescope.builtin').find_files {
+						cwd = vim.fn.expand("$HOME"),
+						hidden = true,
+						no_ignore = true,
+					}
+				end,
 				{ desc = '[ ] Find all Files in Home' })
 			vim.keymap.set('n', '<leader>/', function()
 				require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
