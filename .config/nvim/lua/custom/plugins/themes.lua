@@ -27,6 +27,7 @@ return {
 			vim.cmd([[colorscheme kanagawa-dragon]])
 		end,
 		opts = {
+			keywordStyle = { italic = false },
 			transparent = true,
 			theme = "dragon"
 		},

@@ -194,5 +194,46 @@ end, {
   desc = "execute run command"
 })
 
+------- compile and run command with neovim terminal and not toggle term
+
+local t_state = {
+  buf = -1,
+  win = -1,
+}
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
+
+local create_term = function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 15)
+  return vim.bo.channel
+end
+
+local job_id = 0
+vim.keymap.set("n", "<space>st", function()
+  job_id = create_term();
+end)
+
+vim.keymap.set("n", "<space>send", function()
+  if job_id == 0 then
+    job_id = create_term()
+  end
+
+  local command = stored_ccomand .. "\r\n"
+  vim.fn.chansend(job_id, { command })
+end)
+
+
+
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
