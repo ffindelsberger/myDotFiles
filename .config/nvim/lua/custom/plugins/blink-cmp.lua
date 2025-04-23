@@ -35,7 +35,16 @@ return {
 
 		-- (Default) Only show the documentation popup when manually triggered
 		completion = {
-			menu = { border = 'rounded' },
+			menu = {
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 }, { "kind_icon", "kind" }
+					}
+				},
+				border = 'rounded',
+				winhighlight = 'Normal:CmpNormal'
+
+			},
 			documentation = { auto_show = false, window = { border = 'rounded' } }
 		},
 
