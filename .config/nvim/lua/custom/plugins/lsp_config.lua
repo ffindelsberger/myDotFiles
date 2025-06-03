@@ -25,6 +25,7 @@ local function set_generel_lsp_config(bufnr)
 	nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 	nmap('<leader>F', vim.lsp.buf.format, '[F]ormat Buffer')
 
+
 	-- Lesser used LSP functionality
 	-- did i actually ever use these =
 	-- nmap('<leader>la', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -63,8 +64,10 @@ local border_round = {
 
 -- LSP settings (for overriding per client)
 local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
+	["textDocument/hover"] = vim.lsp.buf.hover({ border = border_round }),
+	-- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
+	["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border_round }),
+	-- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
 }
 
 --  Enable the following language servers
@@ -78,7 +81,7 @@ local lsp_servers = {
 	--astro = {},
 	-- rust_analyzer = {}, #
 	clangd = {},
-	-- gopls = {},
+	--gopls = {},
 
 	-- tsserver = {},
 	lua_ls = {
@@ -278,6 +281,7 @@ return {
 
 			-- Setup neovim lua configuration
 			require('neodev').setup()
+			vim.o.winborder = "rounded";
 
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
