@@ -59,6 +59,9 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+#fzfmenu
+bindsym $mod+Shift+f exec --no-startup-id fzfmenu.sh  
+
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 # use rofi instead of dmenu
@@ -124,6 +127,11 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+#set Screen configuration
+#--Vegapunk--
+exec xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 0x0 --rotate left --output DP-3 --off --output HDMI-0 --primary --mode 2560x1440 --pos 1440x560 --rotate normal --output DP-4 --off --output DP-5 --off
+#
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: tty"
@@ -140,16 +148,16 @@ set $ws10 "10: Obsidian"
 
 # Assign workspaces to monitors
 # use xrandr --listmonitors to list the connected monitor names
-workspace $ws1  output "DP-2"
-workspace $ws2  output "DP-2"
-workspace $ws3  output "DP-2"
-workspace $ws4  output "DP-2"
-workspace $ws5  output "DP-2"
-workspace $ws6  output "DP-2"
-workspace $ws7  output "DP-2"
-workspace $ws8  output "HDMI-0"
-workspace $ws9  output "HDMI-0"
-workspace $ws10 output "HDMI-0"
+workspace $ws1  output "HDMI-0"
+workspace $ws2  output "HDMI-0"
+workspace $ws3  output "HDMI-0"
+workspace $ws4  output "HDMI-0"
+workspace $ws5  output "HDMI-0"
+workspace $ws6  output "HDMI-0"
+workspace $ws7  output "HDMI-0"
+workspace $ws8  output "DP-2"
+workspace $ws9  output "DP-2"
+workspace $ws10 output "DP-2"
 
 # Put larger Borders on first Workspace
 workspace $ws1 gaps inner 40
@@ -303,6 +311,10 @@ for_window [class="Eog"] floating enable
 for_window [class="Pcmanfm"] floating enable 
 #Image viewer
 for_window [class="feh"] floating enable 
+
+#temporary
+for_window [class="open_gl_learning"] floating enable
+for_window [title="meTime"] floating enable 
 
 # this line is used to make the gui app window i am working on to be floating. Find out the Window class by running "xprop WM_CLASS" and clicking on the window
 for_window [class="Progress_bar"] floating enable
