@@ -63,12 +63,12 @@ local border_round = {
 }
 
 -- LSP settings (for overriding per client)
-local handlers = {
-	["textDocument/hover"] = vim.lsp.buf.hover({ border = border_round }),
-	-- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
-	["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border_round }),
-	-- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
-}
+-- local handlers = {
+-- 	["textDocument/hover"] = vim.lsp.buf.hover({ border = border_round }),
+-- 	-- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
+-- 	["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border_round }),
+-- 	-- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
+-- }
 
 --  Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -80,16 +80,16 @@ local lsp_servers = {
 	-- pyright = {},
 	--astro = {},
 	-- rust_analyzer = {}, #
-	clangd = {},
+	-- clangd = {},
 	--gopls = {},
 
 	-- tsserver = {},
-	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-		},
-	},
+	-- lua_ls = {
+	-- 	Lua = {
+	-- 		workspace = { checkThirdParty = false },
+	-- 		telemetry = { enable = false },
+	-- 	},
+	-- },
 }
 
 --  This function gets run when an LSP connects to a particular buffer.
@@ -99,9 +99,8 @@ local on_attach_default = function(_, bufnr)
 end
 
 -- Neovim 11 lsp settings
-
 vim.lsp.config.clangd = {
-	cmd = { 'clangd', '--background-index' },
+	cmd = { 'clangd', '--background-index', '--clang-tidy' },
 	root_markers = { 'compile_commands.json', 'compile_flags.txt' },
 	filetypes = { 'c', 'cpp', 'cuda' },
 }
@@ -159,11 +158,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 		nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-
-		-- Create a command `:Format` local to the LSP buffer
-		vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
-			vim.lsp.buf.format()
-		end, { desc = 'Format current buffer with LSP' })
+		if client:supports_method("textDocument/formatting") then
+			-- Create a command `:Format` local to the LSP buffer
+			vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
+				vim.lsp.buf.format()
+			end, { desc = 'Format current buffer with LSP' })
+		end
 	end,
 })
 
@@ -273,6 +273,9 @@ return {
 	-- 		-- LSP Extensions for i.E. Java
 	-- 		{
 	-- 			'mfussenegger/nvim-jdtls'
+	-- 		},
+	-- 		{
+	-- 			'nvim-java/nvim-java'
 	-- 		}
 	-- 	},
 	-- 	config = function()
@@ -292,28 +295,41 @@ return {
 	--
 	-- 		mason_lspconfig.setup {
 	-- 			ensure_installed = vim.tbl_keys(lsp_servers),
-	-- 			automatic_installation = false
+	-- 			automatic_installation = false,
+	-- 			handlers = {
+	-- 				jdtls = function()
+	-- 					require('java').setup {
+	-- 						-- Your custom jdtls settings goes here
+	-- 					}
+	--
+	-- 					require('lspconfig').jdtls.setup {
+	-- 						-- Your custom nvim-java configuration goes here
+	-- 					}
+	-- 				end
+	-- 			}
 	-- 		}
 	--
-	-- 		local lsp_config = require('lspconfig')
+	--
+	--
+	-- 		--[[ local lsp_config = require('lspconfig') ]]
 	--
 	-- 		-- The first entry (without a key) will be the default handler
 	-- 		-- and will be called for each installed server that doesn't have
 	-- 		-- a dedicated handler.
-	-- 		mason_lspconfig.setup_handlers {
-	-- 			function(server_name)
-	-- 				lsp_config[server_name].setup {
-	-- 					capabilities = capabilities,
-	-- 					on_attach = on_attach_default,
-	-- 					settings = lsp_servers[server_name],
-	-- 					handlers = handlers,
-	-- 				}
-	-- 			end,
-	-- 			-- We have to register a dedicated handler for rust_analyzer becaue it is managed
-	-- 			-- by the rust-tools plugin
-	-- 			-- see ':h mason-lspconfig-commands'
-	-- 			--["rust_analyzer"] = function() end, -- rustaceanvim is a file type plugin and needs no setup function. Here we prevent mason from configuring rust_analyzer to prevent conflicts
-	-- 		}
+	-- 		-- mason_lspconfig.setup_handlers {
+	-- 		-- 	function(server_name)
+	-- 		-- 		lsp_config[server_name].setup {
+	-- 		-- 			capabilities = capabilities,
+	-- 		-- 			on_attach = on_attach_default,
+	-- 		-- 			settings = lsp_servers[server_name],
+	-- 		-- 			handlers = handlers,
+	-- 		-- 		}
+	-- 		-- 	end,
+	-- 		-- 	-- We have to register a dedicated handler for rust_analyzer becaue it is managed
+	-- 		-- 	-- by the rust-tools plugin
+	-- 		-- 	-- see ':h mason-lspconfig-commands'
+	-- 		-- 	--["rust_analyzer"] = function() end, -- rustaceanvim is a file type plugin and needs no setup function. Here we prevent mason from configuring rust_analyzer to prevent conflicts
+	-- 		-- }
 	--
 	-- 		-- Configurete Autoformatting
 	-- 		--
@@ -399,6 +415,12 @@ return {
 	-- 			end,
 	-- 		})
 	-- 	end,
+	-- },
+	-- {
+	-- 	'nvim-java/nvim-java',
+	-- 	config = function(_, opts)
+	-- 		require('lspconfig').jdtls.setup({})
+	-- 	end
 	-- },
 	{
 		'mrcjkb/rustaceanvim',

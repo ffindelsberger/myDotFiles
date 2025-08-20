@@ -71,6 +71,10 @@ require('lazy').setup({
   -- checkhealth warning: apparently which-key does not like that comment.nvim has multiple
   -- mappings to the same keystroaks in different modes hence it shows a duplicate key mapping warning
   { 'numToStr/Comment.nvim',  opts = {} },
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "codecompanion" }
+	},
 
   -- import all the other plugins
   { import = 'custom.plugins' },

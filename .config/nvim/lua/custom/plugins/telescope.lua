@@ -13,7 +13,6 @@ return {
 			-- See `:help telescope` and `:help telescope.setup()`
 			require('telescope').setup {
 				defaults = {
-					border = false, -- to not have double borders because of win.o.borders
 					mappings = {
 						i = {
 							['<C-u>'] = false,
