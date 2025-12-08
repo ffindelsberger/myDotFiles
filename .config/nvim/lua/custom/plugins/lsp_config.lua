@@ -100,7 +100,7 @@ end
 
 -- Neovim 11 lsp settings
 vim.lsp.config.clangd = {
-	cmd = { 'clangd', '--background-index', '--clang-tidy' },
+	cmd = { 'clangd', '--background-index', '--clang-tidy', '--enable-config'},
 	root_markers = { 'compile_commands.json', 'compile_flags.txt' },
 	filetypes = { 'c', 'cpp', 'cuda' },
 }
