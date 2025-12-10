@@ -102,8 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
+
+
 #####################################################################################################################################
 #####################################################################################################################################
 #					Until here is oh my zsh default file
@@ -117,8 +117,12 @@ alias nv="nvim"
 alias lgit="lazygit"
 alias coc="cargo build"
 alias cor="cargo run"
+alias sshterm="TERM=xterm ssh"
 
-# To add something to all the paths lezs go (usd for Bachelor thesis to add stuff like embree on the path)
+alias ccmake-3="/home/florian/.local/bin/cmake_3/ccmake"
+alias cmake-3="/home/florian/.local/bin/cmake_3/cmake"
+
+# To add something to all the paths lezs go
 function add_prefix() {
 	export PATH=$1/bin:$PATH
 	export CPPFLAGS="-I $1/include $CPPFLAGS"
@@ -128,6 +132,10 @@ function add_prefix() {
 	export PKG_CONFIG_PATH=$1/lib/pkgconfig:$PKG_CONFIG_PATH
 }
 add_prefix /home/florian/data/git/graphics/rtgi-libs/embree 
+add_prefix /opt/cuda
+add_prefix /home/florian/data/git/foss/OpenUSD/install
+#add_prefix /opt/optix/9.0.0
+#add_prefix /opt/optix/7.7.0
 
 kitty-reload() {
     kill -SIGUSR1 $(pidof kitty)
@@ -137,5 +145,7 @@ kitty-reload() {
 source <(fzf --zsh)
 
 #zsh-syntax-highlighting (has to be at the end)
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Make Node Version Manager work (nvm) nvm has to be installed
+source /usr/share/nvm/init-nvm.sh
