@@ -62,42 +62,6 @@ local border_round = {
 	{ "│", "FloatBorder" },
 }
 
--- LSP settings (for overriding per client)
--- local handlers = {
--- 	["textDocument/hover"] = vim.lsp.buf.hover({ border = border_round }),
--- 	-- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_round }),
--- 	["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border_round }),
--- 	-- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border_round }),
--- }
-
---  Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local lsp_servers = {
-	-- gopls = {},
-	-- pyright = {},
-	--astro = {},
-	-- rust_analyzer = {}, #
-	-- clangd = {},
-	--gopls = {},
-
-	-- tsserver = {},
-	-- lua_ls = {
-	-- 	Lua = {
-	-- 		workspace = { checkThirdParty = false },
-	-- 		telemetry = { enable = false },
-	-- 	},
-	-- },
-}
-
---  This function gets run when an LSP connects to a particular buffer.
--- This is the default on_attach function for every lsp which does not need custome handling/configuration
-local on_attach_default = function(_, bufnr)
-	set_generel_lsp_config(bufnr)
-end
-
 -- Neovim 11 lsp settings
 vim.lsp.config.clangd = {
 	cmd = { 'clangd', '--background-index', '--clang-tidy', '--enable-config' },
