@@ -127,6 +127,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
 				vim.lsp.buf.format()
 			end, { desc = 'Format current buffer with LSP' })
+
+			nmap('<leader>F', vim.lsp.buf.format, '[F]ormat Buffer')
 		end
 	end,
 })
