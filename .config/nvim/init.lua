@@ -76,6 +76,9 @@ require('lazy').setup({
 		ft = { "markdown", "codecompanion" }
 	},
 
+  -- Get some icons
+  { 'nvim-mini/mini.nvim', version = '*' },
+
   -- import all the other plugins
   { import = 'custom.plugins' },
 }, {})
