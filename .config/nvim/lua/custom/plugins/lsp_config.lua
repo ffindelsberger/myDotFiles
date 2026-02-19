@@ -84,6 +84,14 @@ vim.lsp.config.lua_ls = {
 }
 vim.lsp.enable("lua_ls")
 
+vim.lsp.config.slang = {
+	cmd = { "slangd" },
+	filetypes = { "shaderslang" },
+	root_markers = { vim.uv.cwd() },
+	settings = {},
+}
+vim.lsp.enable("slang")
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
