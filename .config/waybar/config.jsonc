@@ -20,7 +20,7 @@
 	"network",
 	"bluetooth",
 	//"battery",
-	"temperature",
+	// "temperature",
 	"pulseaudio",
 	"clock"
   ],
