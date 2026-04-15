@@ -29,7 +29,12 @@ return {
 		opts = {
 			keywordStyle = { italic = false },
 			transparent = true,
-			theme = "dragon"
+			theme = "dragon",
+			colors = {
+				palette = {
+					dragonYellow="#c0b496"
+				}
+			}
 		},
 	}
 }

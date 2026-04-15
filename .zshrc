@@ -114,13 +114,17 @@ source $ZSH/oh-my-zsh.sh
 #
 
 alias nv="nvim"
+alias vim='nvim'
 alias lgit="lazygit"
 alias coc="cargo build"
 alias cor="cargo run"
 alias sshterm="TERM=xterm ssh"
 
-alias ccmake-3="/home/florian/.local/bin/cmake_3/ccmake"
-alias cmake-3="/home/florian/.local/bin/cmake_3/cmake"
+alias cmake3="/opt/cmake_3-31/bin/cmake"
+alias ccmake3="/opt/cmake_3-31/bin/ccmake"
+
+#alias ccmake-3="/home/florian/.local/bin/cmake_3/ccmake"
+#alias cmake-3="/home/florian/.local/bin/cmake_3/cmake"
 
 # To add something to all the paths lezs go
 function add_prefix() {
@@ -131,11 +135,20 @@ function add_prefix() {
 	export LDFLAGS="-L$1/lib -L$1/lib64 $LDFLAGS"
 	export PKG_CONFIG_PATH=$1/lib/pkgconfig:$PKG_CONFIG_PATH
 }
-add_prefix /home/florian/data/git/graphics/rtgi-libs/embree 
+#add_prefix /home/florian/data/git/graphics/rtgi-libs/embree 
 add_prefix /opt/cuda
-add_prefix /home/florian/data/git/foss/OpenUSD/install
-#add_prefix /opt/optix/9.0.0
+#add_prefix /home/florian/data/git/foss/OpenUSD/install
+add_prefix /opt/optix/9.1.0
+#add_prefix /opt/optix/7.5.0
 #add_prefix /opt/optix/7.7.0
+#add_prefix /opt/optix/8.1.0
+
+function add_path() {
+	export PATH=$1/bin:$PATH
+}
+# Add slang compiler and lsp to path
+add_path /home/florian/data/git/foss/slang/installs/
+
 
 kitty-reload() {
     kill -SIGUSR1 $(pidof kitty)
@@ -148,4 +161,4 @@ source <(fzf --zsh)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Make Node Version Manager work (nvm) nvm has to be installed
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
