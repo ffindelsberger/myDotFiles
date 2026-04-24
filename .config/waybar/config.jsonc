@@ -19,7 +19,7 @@
 	"tray",
 	"network",
 	"bluetooth",
-	//"battery",
+	"battery",
 	// "temperature",
 	"pulseaudio",
 	"clock"

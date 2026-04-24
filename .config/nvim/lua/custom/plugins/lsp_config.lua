@@ -67,8 +67,36 @@ vim.lsp.config.clangd = {
 	cmd = { 'clangd', '--background-index', '--clang-tidy', '--enable-config' },
 	root_markers = { 'compile_commands.json', 'compile_flags.txt' },
 	filetypes = { 'c', 'cpp', 'cuda' },
+	capabilities = {
+		textDocument = {
+			inactiveRegionsCapabilities = {
+				inactiveRegions = true,
+			},
+		},
+	},
 }
 vim.lsp.enable({ 'clangd' })
+
+-- Handle clangd's inactiveRegions to grey out #ifdef blocks
+-- This is separate from semantic tokens
+local inactive_ns = vim.api.nvim_create_namespace("lsp_inactive_regions")
+vim.lsp.handlers["textDocument/inactiveRegions"] = function(_, result, ctx)
+	if not result then return end
+
+	local bufnr = vim.uri_to_bufnr(result.textDocument.uri)
+	if not vim.api.nvim_buf_is_valid(bufnr) then return end
+
+	vim.api.nvim_buf_clear_namespace(bufnr, inactive_ns, 0, -1)
+
+	for _, region in ipairs(result.regions) do
+		for line = region.start.line, region["end"].line do
+			vim.api.nvim_buf_set_extmark(bufnr, inactive_ns, line, 0, {
+				line_hl_group = "DiagnosticUnnecessary",
+				priority = 500,
+			})
+		end
+	end
+end
 
 vim.lsp.config.lua_ls = {
 	cmd = { "lua-language-server" },
@@ -92,6 +120,8 @@ vim.lsp.config.slang = {
 }
 vim.lsp.enable("slang")
 
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -101,7 +131,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- 	vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 		-- end
 
-		--Disable Semantic Code Highlighting
+		-- Disable Semantic Code Highlighting (we handle inactive regions separately)
 		---@diagnostic disable-next-line need-check-nil
 		client.server_capabilities.semanticTokensProvider = nil
 

@@ -1,13 +1,11 @@
 return {
 	-- Fuzzy Finder (files, lsp, etc)
-	{ 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-
 	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'make',
-		cond = function()
-			return vim.fn.executable 'make' == 1
-		end,
+		'nvim-telescope/telescope.nvim',
+		version = "*",
+		dependencies = { 'nvim-lua/plenary.nvim',
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+		},
 		config = function()
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`

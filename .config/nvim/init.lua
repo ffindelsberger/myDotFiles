@@ -45,7 +45,7 @@ require('lazy').setup({
   --'tpope/vim-sleuth',
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',   opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -70,14 +70,14 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   -- checkhealth warning: apparently which-key does not like that comment.nvim has multiple
   -- mappings to the same keystroaks in different modes hence it shows a duplicate key mapping warning
-  { 'numToStr/Comment.nvim',  opts = {} },
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown", "codecompanion" }
-	},
+  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" }
+  },
 
   -- Get some icons
-  { 'nvim-mini/mini.nvim', version = '*' },
+  { 'nvim-mini/mini.nvim',    version = '*' },
 
   -- import all the other plugins
   { import = 'custom.plugins' },
@@ -103,6 +103,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- -- -- Enable Highlighting
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = { '<filetype>' },
+--   callback = function() vim.treesitter.start() end,
+-- })
 
 
 --======================================================================================================================
