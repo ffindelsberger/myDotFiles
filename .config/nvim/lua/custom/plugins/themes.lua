@@ -32,7 +32,14 @@ return {
 			theme = "dragon",
 			colors = {
 				palette = {
-					dragonYellow="#c0b496"
+					dragonYellow = "#c0b496"
+				}
+			},
+			overrides = function()
+				return {
+					Type = { fg = "#86985D" },
+					["@variable.member"] = { fg = "#A292A3" },
+					["@variable.member.rust"] = { fg = "#A292A3" },
 				}
 			}
 		},
