@@ -32,7 +32,8 @@ return {
 			theme = "dragon",
 			colors = {
 				palette = {
-					dragonYellow = "#c0b496"
+					-- dragonYellow = "#c0b496",
+					dragonYellow = "#bfb59d"
 				}
 			},
 			overrides = function()

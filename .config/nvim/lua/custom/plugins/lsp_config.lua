@@ -64,7 +64,16 @@ local border_round = {
 
 -- Neovim 11 lsp settings
 vim.lsp.config.clangd = {
-	cmd = { 'clangd', '--background-index', '--clang-tidy', '--enable-config' },
+	cmd = {
+		'clangd',
+		'--background-index',
+		'--clang-tidy',
+		'--clang-tidy-checks=*,bugprone-*,cert-*,clang-analyzer-*,cppcoreguidelines-*,hicpp-*,misc-*,modernize-*,performance-*,portability-*,readability-*,-modernize-use-trailing-return-type,-readability-identifier-length,-google-*,-llvmlibc-*,-fuchsia-*,-altera-*',
+		'--enable-config',
+		'--header-insertion=iwyu',
+		'--completion-style=detailed',
+		-- '--function-arg-placeholders',
+	},
 	root_markers = { 'compile_commands.json', 'compile_flags.txt' },
 	filetypes = { 'c', 'cpp', 'cuda' },
 	capabilities = {
@@ -120,7 +129,32 @@ vim.lsp.config.slang = {
 }
 vim.lsp.enable("slang")
 
-
+vim.lsp.config.gopls = {
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.work", "go.mod", ".git" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+				unusedwrite = true,
+				useany = true,
+			},
+			staticcheck = true,
+			gofumpt = true,
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
+		},
+	},
+}
+vim.lsp.enable("gopls")
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
@@ -158,7 +192,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- See `:help K` for why this keymap
 		-- 03.06.25: This might not be needed since Neovim 0.11. Disabling it for now
 		-- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+
 		nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+		-- setup keymap to enable inlay hints
+		if client:supports_method("textDocument/inlayHint") then
+			nmap('<leader>th', function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+			end, '[T]oggle Inlay [H]ints')
+		end
 
 		if client:supports_method("textDocument/formatting") then
 			-- Create a command `:Format` local to the LSP buffer
