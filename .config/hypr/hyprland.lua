@@ -229,7 +229,8 @@ hl.bind(mainMod .. " + M",
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("bash /home/florian/.config/hypr/opencode-prompt.sh"))
+hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("bash /home/florian/.config/hypr/scripts/opencode-prompt.sh"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("bash /home/florian/.config/hypr/scripts/kitty-directory.sh"))
 hl.bind(mainMod .. " + R", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
