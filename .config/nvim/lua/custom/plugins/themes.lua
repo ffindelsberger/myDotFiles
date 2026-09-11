@@ -17,7 +17,8 @@ return {
 			},
 			overrides = function()
 				return {
-					Type = { fg = "#86985D" },
+					-- Type = { fg = "#86985D" },
+					Number = { fg = "#86985D" },
 					["@variable.member"] = { fg = "#A292A3" },
 					["@variable.member.rust"] = { fg = "#A292A3" },
 				}

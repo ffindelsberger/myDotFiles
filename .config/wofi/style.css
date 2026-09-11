@@ -1,39 +1,148 @@
+/* Kanagawa Dragon theme for wofi
+ *
+ * Palette
+ *   base      #181616   surface   #1D1C19   raised    #282727
+ *   overlay   #393836   ash       #737c73
+ *   white     #c5c9c5   gray      #a6a69c
+ *   blue      #8ba4b0   green     #87a987   yellow    #c4b28a
+ *   orange    #b6927b   red       #c4746e   violet    #8992a7
+ */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "DejaVu Sans Mono", monospace;
+    border: none;
+    outline: none;
+}
+
+/* Main window */
 window {
-margin: 0px;
-border: 1px solid #88c0d0;
-background-color: #2e3440;
+    margin: 0px;
+    font-size: 18px;            /* v1.4.1, setting the font here ensures the window stays centered */
+    border-radius: 16px;
+    border: 2px solid #8ba4b0;
+    background-color: rgba(24, 22, 22, 0.96);   /* dragonBlack3 */
 }
 
-#input {
-margin: 5px;
-border: none;
-color: #d8dee9;
-background-color: #3b4252;
-}
-
-#inner-box {
-margin: 5px;
-border: none;
-background-color: #2e3440;
-}
-
+/* Background */
 #outer-box {
-margin: 5px;
-border: none;
-background-color: #2e3440;
+    margin: 0px;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
 }
 
+/* Search box */
+#input {
+    margin: 4px 4px 10px 4px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 2px solid #393836;
+    background-color: #1D1C19;   /* dragonBlack2 */
+    font-size: 18px;
+    font-weight: normal;
+    color: #c5c9c5;              /* dragonWhite */
+}
+
+/* Effect when the search box is focused */
+#input:focus {
+    border: 2px solid #8ba4b0;   /* dragonBlue2 */
+    background-color: #282727;   /* dragonBlack4 */
+}
+
+/* Search box icon color */
+#input image {
+    border: none;
+    color: #c4b28a;              /* dragonYellow */
+}
+
+/* List border */
 #scroll {
-margin: 0px;
-border: none;
+    margin: 0px;
+    border: none;
+    background-color: transparent;
 }
 
+/* List */
+#inner-box {
+    margin: 2px;
+    border: none;
+    background-color: transparent;
+}
+
+/* Text inside the list */
 #text {
-margin: 5px;
-border: none;
-color: #d8dee9;
+    margin: 0px 6px;
+    color: #c5c9c5;              /* dragonWhite */
 }
 
+/* Entry rows */
+#entry {
+    padding: 8px 12px;
+    margin: 2px 0px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-color: transparent;
+}
+
+/* Icons */
+#entry image {
+    padding-right: 8px;
+    background-color: transparent;
+}
+
+/* Hovered entry */
+#entry:hover {
+    background-color: #1D1C19;   /* dragonBlack2 */
+}
+
+/* Selected entry */
 #entry:selected {
-background-color: #3b4252;
+    border: 2px solid #8ba4b0;   /* dragonBlue2 */
+    background-color: #282727;   /* dragonBlack4 */
+}
+
+/* Selected entry text */
+#text:selected {
+    color: #87a987;              /* dragonGreen */
+    font-weight: bold;
+}
+
+/* Sub-items (activatable entries) */
+#entry.activatable {
+    margin: 2px 4px;
+    border-radius: 10px;
+    background-color: #1D1C19;   /* dragonBlack2 */
+}
+
+#entry.activatable #text {
+    color: #a6a69c;              /* dragonGray */
+    font-style: italic;
+}
+
+#entry.activatable:selected {
+    border: 2px solid #87a987;   /* dragonGreen */
+    background-color: #282727;   /* dragonBlack4 */
+}
+
+#entry.activatable:selected #text {
+    color: #c4b28a;              /* dragonYellow */
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* Sub-item ">" expansion arrow */
+#entry arrow {
+    font-weight: bold;
+    color: #b6927b;              /* dragonOrange */
+}
+
+#entry arrow:hover {
+    color: #87a987;              /* dragonGreen */
+}
+
+/* Sub-entry container */
+#expander-box {
+    margin: 2px;
+    border-radius: 10px;
+    background-color: transparent;
 }
