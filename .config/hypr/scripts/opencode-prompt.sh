@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-prompt=$(wofi --dmenu --prompt "Ask OpenCode" --width 700 --height 1 \
+prompt=$(wofi --dmenu --prompt "Ask OpenCode" --width 700 --height 70 \
     --location center --hide-scroll --cache-file /dev/null \
     --define hide_image=true </dev/null) || exit 0
 

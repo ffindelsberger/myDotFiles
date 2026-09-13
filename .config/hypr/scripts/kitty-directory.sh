@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-directory=$(wofi --dmenu --prompt "Open directory in Kitty" --width 700 --height 100 \
-    --location center --hide-scroll --cache-file /dev/null \
-    --define hide_image=true </dev/null) || exit 0
+directory=$(
+    {
+        zoxide query --list
+        fd --type directory --absolute-path --exclude .git . "$HOME"
+    } | awk '!seen[$0]++' | wofi --dmenu --prompt "Open directory in Kitty" \
+        --width 700 --height 500 --location center --matching fuzzy \
+        --cache-file /dev/null --define hide_image=true
+) || exit 0
 
 [[ -n ${directory//[[:space:]]/} ]] || exit 0
 

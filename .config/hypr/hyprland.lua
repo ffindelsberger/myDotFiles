@@ -65,8 +65,8 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
 	xwayland = {
-        force_zero_scaling = true,
-    },
+		force_zero_scaling = true,
+	},
 	general = {
 		gaps_in          = 1,
 		gaps_out         = 2,
@@ -290,7 +290,6 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
--- Example window rules that are useful
 
 hl.window_rule({
 	name   = "opencode-quick",
@@ -299,6 +298,19 @@ hl.window_rule({
 	size   = { "monitor_w * 0.70", "monitor_h * 0.70" },
 	center = true,
 })
+
+hl.window_rule({
+	match = { class = "^anki$" },
+	float = true,
+})
+
+hl.window_rule({
+	match = { class = "^org\\.pulseaudio\\.pavucontrol$" },
+	size = {"monitor_w * 0.5", "monitor_h * 0.5"},
+	float = true,
+})
+
+-- Example window rules that are useful
 
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
