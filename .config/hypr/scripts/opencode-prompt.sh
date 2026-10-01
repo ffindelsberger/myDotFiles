@@ -9,6 +9,17 @@ prompt=$(wofi --dmenu --prompt "Ask OpenCode" --width 700 --height 70 \
 
 scratch=$(mktemp -d /tmp/opencode-query.XXXXXXXX)
 # Apply the model and effort defaults only to this launcher.
-export OPENCODE_CONFIG_CONTENT='{"agent":{"build":{"model":"openai/gpt-5.6-sol","variant":"medium"}}}'
+cat >"$scratch/opencode.json" <<'EOF'
+{
+    "model": "openai/gpt-5.6-sol",
+    "default_agent": "build",
+    "agents": {
+        "build": {
+            "model": "openai/gpt-5.6-sol#medium"
+        }
+    }
+}
+EOF
+
 exec kitty --class opencode-quick --directory "$scratch" \
-    opencode "$scratch" --agent build --model openai/gpt-5.6-sol --prompt "$prompt"
+    opencode "$scratch" --prompt "$prompt"

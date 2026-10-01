@@ -1,7 +1,6 @@
 ------------------
 ---- MONITORS ----
 ------------------
-
 hl.monitor({
 	output   = "",
 	mode     = "preferred",
@@ -61,6 +60,7 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
+
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
