@@ -12,6 +12,7 @@
 	"idle_inhibitor"
 	],
   "modules-right": [
+    "custom/display",
     "network",
     "tray",
     "bluetooth",
@@ -49,8 +50,8 @@
   "clock": {
     //"format": "{:%H:%M}",
 	"interval" : 1,
-    "format": " {:%H:%M:%S    %a %d.%m}",
-    "format-alt": "{:%A, %d %B %Y - %H:%m}",
+    "format": "{:%A, %d %B %Y - %H:%M}",
+    "format-alt": " {:%H:%M:%S    %a %d.%m}",
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
       "mode": "month",
@@ -126,16 +127,17 @@
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "on-click": "pavucontrol",
-    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click": "/home/florian/.config/hypr/scripts/audio-output-selector.sh",
+    "on-click-right": "pavucontrol",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
-    "format-muted": "",
+    "format-muted": "󰝟",
     "format-icons": {
       "default": [
-        "",
-        "",
-        ""
+        "󰕿",
+        "󰖀",
+        "󰕾"
       ]
     }
   },
@@ -143,6 +145,17 @@
     "icon-size": 14,
     "spacing": 5,
     "show-passive-items": true
+  },
+  "custom/display": {
+    "format": "󰍹",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "/home/florian/.config/waybar/display-menu.xml",
+    "menu-actions": {
+      "default": "/home/florian/.config/hypr/scripts/display-mode.sh default",
+      "wqhd": "/home/florian/.config/hypr/scripts/display-mode.sh wqhd",
+      "gaming": "/home/florian/.config/hypr/scripts/display-mode.sh gaming"
+    }
   },
 
 }

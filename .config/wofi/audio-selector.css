@@ -1,0 +1,18 @@
+/* Compact variant of the main theme for the audio output selector */
+
+@import url("file:///home/florian/.config/wofi/style.css");
+
+window {
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+#outer-box {
+    padding: 4px;
+}
+
+#entry {
+    padding: 3px 6px;
+    margin: 1px 0px;
+    border-radius: 6px;
+}

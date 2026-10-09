@@ -66,7 +66,8 @@ window#waybar {
 #pulseaudio,
 #idle_inhibitor,
 #tray,
-#bluetooth {
+#bluetooth,
+#custom-display {
   padding: 0 8px;
   color: #e6d8ba;
   margin: 3px 4px 3px 0px;
@@ -80,7 +81,7 @@ window#waybar {
   margin: 3px 2px;
 }
 
-#window, #memory, #clock, #idle_inhibitor {
+#window, #memory, #clock, #idle_inhibitor, #custom-display {
 background-color: #27272a;
 }
 
@@ -140,6 +141,23 @@ tooltip {
 tooltip label {
     color: #e6d8ba;
     font-weight: normal;
+}
+
+menu {
+  padding: 4px;
+  background: #27272a;
+  border: 1px solid alpha(#e6d8ba, 0.8);
+  border-radius: 8px;
+}
+
+menu menuitem {
+  padding: 2px 8px;
+  color: #e6d8ba;
+}
+
+menu menuitem:hover {
+  background-color: #ff9b71;
+  color: #000;
 }
 
 @keyframes blink {
