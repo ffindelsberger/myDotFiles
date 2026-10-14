@@ -293,7 +293,7 @@ return {
 	-- TODO: cleanup this file, autoformat should be in extra plugin folder
 	{
 		'mrcjkb/rustaceanvim',
-		version = '^5', -- Recommended
+		version = '^9', -- Recommended
 		lazy = false, -- This plugin is already lazy
 		config = function(_, opts)
 			vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
