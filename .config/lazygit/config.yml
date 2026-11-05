@@ -1,0 +1,6 @@
+git:
+  diffRenderers:
+    - name: delta
+      command: "delta --dark --paging=never --line-numbers --syntax-theme='Nord' --minus-style='syntax #3f0001' --plus-style='syntax #002800'"
+    - name: delta side-by-side
+      command: "delta --dark --paging=never --line-numbers --side-by-side --width={{width}} --syntax-theme='Nord' --minus-style='syntax #3f0001' --plus-style='syntax #002800'"
