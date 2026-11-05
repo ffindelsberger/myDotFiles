@@ -3,7 +3,7 @@ return {
 		"rebelot/kanagawa.nvim",
 		name = "kanagawa",
 		init = function()
-			vim.cmd([[colorscheme kanagawa-dragon]])
+			-- vim.cmd([[colorscheme kanagawa-dragon]])
 		end,
 		opts = {
 			keywordStyle = { italic = false },
@@ -23,6 +23,17 @@ return {
 					["@variable.member.rust"] = { fg = "#A292A3" },
 				}
 			end,
+		},
+		{
+			"webhooked/kanso.nvim",
+			lazy = false,
+			priority = 1000,
+			init = function()
+				vim.cmd([[colorscheme kanso]])
+			end,
+			opts = {
+				transparent = true
+			}
 		},
 	}
 }
